@@ -6,6 +6,7 @@
     <title>Moment Date</title>
     <!-- reference Moment.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <!-- <script src="/moment-timezone.js"></script> -->
   </head>
   <body>
     <h2>Moment Date</h2>
@@ -15,14 +16,16 @@
     <!-- container for JavaScript Date output -->
     <div id="displayJsDate"></div>
     <h2>Days form Birth Date</h2>
-    <!-- container for Moment.js output -->
     <div id="displayBirthDate"></div>
     <h2>Years, Months, and Days form Birth Date</h2>
-    <!-- container for Moment.js output -->
     <div id="displayBirthDateYMD"></div>
     <h2>Closest Date to Today between Two Dates</h2>
-    <!-- container for Moment.js output -->
     <div id="displayClosestDate"></div>
+    <h2>Is Date 1 Before or After Date 2?</h2>
+    <div id="beforeOrAfterDate"></div>
+    <h2>The Time in London</h2>
+    <div id="londonTime"></div>
+
     <script type="text/javascript">
       function Moment() {
         // instantiate a moment object
@@ -52,15 +55,11 @@
         let nowMoment = moment();
         let years = nowMoment.diff(birthMoment, "year");
         birthMoment.add(years, "years");
-
         let months = nowMoment.diff(birthMoment, "months");
         birthMoment.add(months, "months");
-
         let days = nowMoment.diff(birthMoment, "days");
-
         let difference =
           years + " years " + months + " months " + days + " days";
-
         let eDisplayMoment = document.getElementById("displayBirthDateYMD");
         eDisplayMoment.innerHTML = difference;
       }
@@ -68,21 +67,48 @@
 
       function closestDate() {
         let birthMoment = moment([1989, 2, 28]);
-        let anotherMoment = moment([2001, 8, 11])
+        let anotherMoment = moment([2001, 8, 11]);
         let nowMoment = moment();
-        let a = nowMoment.diff(birthMoment, "days")
-        let b = nowMoment.diff(anotherMoment, "days")
-        console.log(a)
-        console.log(b)
+        let a = nowMoment.diff(birthMoment, "days");
+        let b = nowMoment.diff(anotherMoment, "days");
+        // console.log(a);
+        // console.log(b);
         if (a < b) {
-            closestDate = birthMoment
+          closestDate = birthMoment;
         } else {
-            closestDate = anotherMoment
+          closestDate = anotherMoment;
         }
         let eDisplayMoment = document.getElementById("displayClosestDate");
         eDisplayMoment.innerHTML = closestDate;
       }
       closestDate();
+
+      function beforeOrAfterDate() {
+        let birthMoment = moment([1989, 2, 28]);
+        let anotherMoment = moment([2001, 8, 11]);
+        let nowMoment = moment();
+        let a = nowMoment.diff(birthMoment, "days");
+        let b = nowMoment.diff(anotherMoment, "days");
+        if (a < b) {
+          beforeOrAfterDate = "after";
+        } else {
+          beforeOrAfterDate = "before";
+        }
+
+        let eDisplayMoment = document.getElementById("beforeOrAfterDate");
+        eDisplayMoment.innerHTML = beforeOrAfterDate;
+      }
+      beforeOrAfterDate();
+
+      function londonTime() {
+        // moment.tz.add('Europe/London')
+        let londonTime = moment().tz('Europe/London')
+        let eDisplayMoment = document.getElementById("londonTime");
+        console.log(londonTime)
+        eDisplayMoment.innerHTML = londonTime;
+      }
+
+      londonTime()
 
     </script>
   </body>
