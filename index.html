@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moment Date</title>
+    <!-- reference Moment.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  </head>
+  <body>
+    <h2>Moment Date</h2>
+    <!-- container for Moment.js output -->
+    <div id="displayMoment"></div>
+    <h2>JavaScript Date</h2>
+    <!-- container for JavaScript Date output -->
+    <div id="displayJsDate"></div>
+    <h2>Years form Birth Date</h2>
+    <!-- container for Moment.js output -->
+    <div id="displayBirthDate"></div>
+    <script type="text/javascript">
+      function Moment() {
+        // instantiate a moment object
+        let nowMoment = moment();
+        // instantiate a JavaScript Date object
+        let nowDate = new Date();
+        // display value of moment object in #displayMoment div
+        let eDisplayMoment = document.getElementById("displayMoment");
+        eDisplayMoment.innerHTML = nowMoment;
+        // display value of Date object in #displayJsDate div
+        let eDisplayDate = document.getElementById("displayJsDate");
+        eDisplayDate.innerHTML = nowDate;
+      }
+      Moment();
+
+      function fromBirthMoment() {
+        let birthMoment = moment("19890328", "YYYYMMDD").fromNow();
+        let eDisplayMoment = document.getElementById("displayBirthDate");
+        eDisplayMoment.innerHTML = birthMoment;
+      }
+      fromBirthMoment();
+
+    </script>
+  </body>
+</html>
