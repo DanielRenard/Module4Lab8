@@ -14,9 +14,12 @@
     <h2>JavaScript Date</h2>
     <!-- container for JavaScript Date output -->
     <div id="displayJsDate"></div>
-    <h2>Years form Birth Date</h2>
+    <h2>Days form Birth Date</h2>
     <!-- container for Moment.js output -->
     <div id="displayBirthDate"></div>
+    <h2>Years, Months, and Days form Birth Date</h2>
+    <!-- container for Moment.js output -->
+    <div id="displayBirthDateYMD"></div>
     <script type="text/javascript">
       function Moment() {
         // instantiate a moment object
@@ -33,12 +36,33 @@
       Moment();
 
       function fromBirthMoment() {
-        let birthMoment = moment("19890328", "YYYYMMDD").fromNow();
+        let birthMoment = moment([1989, 3, 28]);
+        let nowMoment = moment();
+        let differenceDays = nowMoment.diff(birthMoment, "days") + " days";
         let eDisplayMoment = document.getElementById("displayBirthDate");
-        eDisplayMoment.innerHTML = birthMoment;
+        eDisplayMoment.innerHTML = differenceDays;
       }
       fromBirthMoment();
 
+      function fromBirthMomentYMD() {
+        let birthMoment = moment([1989, 3, 28]);
+        let nowMoment = moment();
+        let years = nowMoment.diff(birthMoment, "year");
+        birthMoment.add(years, "years");
+
+        let months = nowMoment.diff(birthMoment, "months");
+        birthMoment.add(months, "months");
+
+        let days = nowMoment.diff(birthMoment, "days");
+
+        let difference =
+          years + " years " + months + " months " + days + " days";
+
+        let eDisplayMoment = document.getElementById("displayBirthDateYMD");
+        eDisplayMoment.innerHTML = difference;
+      }
+      fromBirthMomentYMD();
+      
     </script>
   </body>
 </html>
