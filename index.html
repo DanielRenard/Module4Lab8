@@ -20,6 +20,9 @@
     <h2>Years, Months, and Days form Birth Date</h2>
     <!-- container for Moment.js output -->
     <div id="displayBirthDateYMD"></div>
+    <h2>Closest Date to Today between Two Dates</h2>
+    <!-- container for Moment.js output -->
+    <div id="displayClosestDate"></div>
     <script type="text/javascript">
       function Moment() {
         // instantiate a moment object
@@ -36,7 +39,7 @@
       Moment();
 
       function fromBirthMoment() {
-        let birthMoment = moment([1989, 3, 28]);
+        let birthMoment = moment([1989, 2, 28]);
         let nowMoment = moment();
         let differenceDays = nowMoment.diff(birthMoment, "days") + " days";
         let eDisplayMoment = document.getElementById("displayBirthDate");
@@ -45,7 +48,7 @@
       fromBirthMoment();
 
       function fromBirthMomentYMD() {
-        let birthMoment = moment([1989, 3, 28]);
+        let birthMoment = moment([1989, 2, 28]);
         let nowMoment = moment();
         let years = nowMoment.diff(birthMoment, "year");
         birthMoment.add(years, "years");
@@ -62,7 +65,25 @@
         eDisplayMoment.innerHTML = difference;
       }
       fromBirthMomentYMD();
-      
+
+      function closestDate() {
+        let birthMoment = moment([1989, 2, 28]);
+        let anotherMoment = moment([2001, 8, 11])
+        let nowMoment = moment();
+        let a = nowMoment.diff(birthMoment, "days")
+        let b = nowMoment.diff(anotherMoment, "days")
+        console.log(a)
+        console.log(b)
+        if (a < b) {
+            closestDate = birthMoment
+        } else {
+            closestDate = anotherMoment
+        }
+        let eDisplayMoment = document.getElementById("displayClosestDate");
+        eDisplayMoment.innerHTML = closestDate;
+      }
+      closestDate();
+
     </script>
   </body>
 </html>
